@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+sqlalchemy # used for database migrations, otherwise any time you make a change to the database you'll need to delete the database and create it again
+passlib
+python-jose==3.3.0
+bcrypt
