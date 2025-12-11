@@ -38,7 +38,7 @@ class HabitLog(Base):
     id = Column(Integer, primary_key=True)
     habit_id = Column(Integer, ForeignKey("habits.id", ondelete="CASCADE"), nullable=False)
     user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
-    date_completed = Column(Date, nullable=False)
+    date = Column(Date, nullable=False)
     value = Column(Integer, default=1)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 

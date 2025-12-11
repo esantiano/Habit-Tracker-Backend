@@ -17,7 +17,7 @@ def list_habits(
     current_user: models.User = Depends(get_current_user)
 ):
     habits = (
-        db.quer(models.Habit)
+        db.query(models.Habit)
         .filter(models.Habit.user_id == current_user.id, models.Habit.is_archived == False)
         .order_by(models.Habit.created_at)
         .all()
@@ -31,7 +31,7 @@ def create_habit(
     current_user: models.User = Depends(get_current_user),
 ):
     habit = models.Habit(
-        user_id=current_user.user_id,
+        user_id=current_user.id,
         **habit_in.model_dump()
     )
     db.add(habit)
@@ -117,9 +117,9 @@ def get_habit_logs(
     )
 
     if from_date:
-        q = q.filter(models.HabitLog.date >= from_date)
+        q = q.filter(models.HabitLog.date>= from_date)
     if to_date:
-        q = q.filter(models.HabitLog.date <= to_date)
+        q = q.filter(models.HabitLog.date<= to_date)
 
     logs = q.order_by(models.HabitLog.date).all()
     return logs 
@@ -144,17 +144,22 @@ def create_habit_log(
         .filter(
             models.HabitLog.habit_id == habit_id,
             models.HabitLog.user_id == current_user.id,
-            models.HabitLog.date == log_in.date,
+            models.HabitLog.created_at == log_in.date,
         )
         .first()
     )
     if existing:
-        log = models.HabitLog(
-            habit_id=habit_id,
-            user_id=current_user.id,
-            **log_in.model_dump(),
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Log already exists for this date."
         )
-        db.add(log)
-        db.commit()
-        db.refresh(log)
-        return log
+
+    log = models.HabitLog(
+        habit_id=habit_id,
+        user_id=current_user.id,
+        **log_in.model_dump(),
+    )
+    db.add(log)
+    db.commit()
+    db.refresh(log)
+    return log
