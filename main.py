@@ -2,10 +2,13 @@ from fastapi import FastAPI
 from app.routers import auth, habits, dashboard
 from app import models
 from app.db import engine
+import os
+
 
 # the method defined here is used to set up the database locally when uvicorn is run
 def create_tables_if_not_exist():
-    models.Base.metadata.create_all(bind=engine)
+    if os.getenv("ENV") != "test":
+        models.Base.metadata.create_all(bind=engine)
 create_tables_if_not_exist()
 app = FastAPI(
     title="Habit Tracker API"
