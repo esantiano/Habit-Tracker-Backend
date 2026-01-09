@@ -76,5 +76,5 @@ def get_today_dashboard(
             )
         )
 
-        return schemas.DashboardTodayResponse(date=today, habits=items)
+    return schemas.DashboardTodayResponse(date=today, habits=items)
     
