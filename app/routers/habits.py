@@ -21,8 +21,6 @@ def list_habits(
     
     if not include_archived:
         q = q.filter(models.Habit.is_archived == False)
-    else:
-        q = q.filter(models.Habit.is_archived == True)
 
     habits = q.order_by(models.Habit.created_at).all()
 
