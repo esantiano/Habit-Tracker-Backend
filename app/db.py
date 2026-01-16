@@ -2,7 +2,7 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = os.getenv("DATABASE_URL", 'sqlite:///Habit_Tracker_Project.db')
+DATABASE_URL = os.getenv("DATABASE_URL", 'sqlite:///Habit-Tracker.db')
 
 if DATABASE_URL.startswith("sqlite"):
     engine = create_engine(

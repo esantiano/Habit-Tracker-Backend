@@ -29,4 +29,4 @@ app.add_middleware(
 # this is just a default route and can be removed later 
 @app.get("/")
 def hello():
-    return {"message":"Hello, these are the endpoints for Habit_Tracker_Project"}
+    return {"message":"Hello, these are the endpoints for Habit-Tracker-Backend"}
