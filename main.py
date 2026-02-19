@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import auth, habits, dashboard
+from app.routers import auth, habits, dashboard, stats
 from app import models
 from app.db import engine
 import os
@@ -18,6 +18,7 @@ app = FastAPI(
 app.include_router(auth.router)
 app.include_router(habits.router)
 app.include_router(dashboard.router)
+app.include_router(stats.router)
 
 app.add_middleware(
     CORSMiddleware,

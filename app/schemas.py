@@ -105,3 +105,32 @@ class DashboardTodayResponse(BaseModel):
     date: date
     habits: List[TodayHabitItem]
     
+# -------------- ANALYTICS SCHEMAS --------------------
+
+class HabitStats(BaseModel):
+    habit_id: int
+    name: str
+    goal_type: str
+    target_per_period: int
+    completion_count: int
+    completion_rate: float
+    current_streak: int
+    best_streak: int
+
+class StatsOverviewResponse(BaseModel):
+    start_date: date
+    end_date: date
+    total_habits: int
+    active_habits: int
+    total_checkins: int
+    overall_completion_rate: float
+    habits: List[HabitStats]
+
+class HeatmapDay(BaseModel):
+    date: date
+    count: int
+
+class HeatmapResponse(BaseModel):
+    start_date: date
+    end_date: date
+    days: List[HeatmapDay]
