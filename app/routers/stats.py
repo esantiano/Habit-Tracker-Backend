@@ -9,6 +9,9 @@ from app.services.streaks import compute_streaks_for_daily, compute_streaks_for_
 from app.services.time import get_today_for_user
 router = APIRouter(prefix="/stats", tags=["stats"])
 
+def week_start(d: date) -> date:
+    return d - timedelta(days=d.weekday())
+
 def range_to_dates(range_str: str, today: date):
     mapping = {"7d": 7, "30d": 30, "90d":90}
     days = mapping.get(range_str, 30)
@@ -80,7 +83,29 @@ def stats_overview(
                 log_dates, today, h.target_per_period
             )
 
-            completion_count = len(log_dates)
+            counts: dict[date, int] = {}
+            for d in log_dates:
+                ws = week_start(d)
+                counts[ws] = counts.get(ws, 0) + 1
+            
+            range_ws_end = week_start(end_date)
+
+            effective_start = max(start_date, h.start_date)
+            eff_ws_start = week_start(effective_start)
+
+            weeks_in_range = ((range_ws_end - eff_ws_start).days // 7) + 1 if eff_ws_start <= range_ws_end else 0
+
+            successful_weeks = sum(
+                1 for ws, c in counts.items()
+                if ws >= eff_ws_start and ws <= range_ws_end and c >= h.target_per_period
+            )
+
+            completion_count = successful_weeks
+            completion_rate = (successful_weeks / weeks_in_range) if weeks_in_range else 0.0
+
+            total_possible += weeks_in_range
+            total_completed += successful_weeks
+
             habit_stats.append(schemas.HabitStats(
                 habit_id=h.id,
                 name=h.name,
