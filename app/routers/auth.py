@@ -71,3 +71,16 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 def read_me(current_user: models.User = Depends(get_current_user)):
     return current_user
 
+@router.patch("/me", response_model=schemas.UserRead)
+def update_me(
+    user_in: schemas.UserUpdate,
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user),
+    ):
+    data = user_in.model_dump(exclude_unset=True)
+    for k, v in data.items():
+        setattr(current_user, k, v)
+    
+    db.commit()
+    db.refresh(current_user)
+    return current_user

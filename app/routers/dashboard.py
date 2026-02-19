@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo
 from app import models, schemas
 from app.dependencies import get_db, get_current_user
 from app.services.streaks import compute_streaks_for_daily, compute_streaks_for_x_per_week
+from app.services.time import get_today_for_user
 
 router = APIRouter(prefix="/dashboard", tags=["dashboard"])
 
@@ -16,13 +17,8 @@ def get_today_dashboard(
     db: Session = Depends(get_db),
     current_user: models.User = Depends(get_current_user)
 ):
-    try:
-        user_tz = ZoneInfo(current_user.timezone or "UTC")
-    except Exception:
-        user_tz = ZoneInfo("UTC")
-    
-    now_user_tz = datetime.now(user_tz)
-    today = now_user_tz.date()
+
+    today = get_today_for_user(current_user.timezone)
 
     habits: List[models.Habit] = (
         db.query(models.Habit)
