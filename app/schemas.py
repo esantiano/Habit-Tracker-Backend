@@ -134,3 +134,10 @@ class HeatmapResponse(BaseModel):
     start_date: date
     end_date: date
     days: List[HeatmapDay]
+
+class ConsistencyScoreResponse(BaseModel):
+    start_date: date
+    end_date: date
+    score: float
+    successful_periods: int
+    total_periods: int
