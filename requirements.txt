@@ -4,3 +4,4 @@ sqlalchemy # used for database migrations, otherwise any time you make a change 
 passlib
 python-jose==3.3.0
 bcrypt
+email-validator
