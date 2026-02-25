@@ -7,10 +7,10 @@ import os
 
 
 # the method defined here is used to set up the database locally when uvicorn is run
-def create_tables_if_not_exist():
-    if os.getenv("ENV") != "test":
-        models.Base.metadata.create_all(bind=engine)
-create_tables_if_not_exist()
+#def create_tables_if_not_exist():
+    #if os.getenv("ENV") != "test":
+        #models.Base.metadata.create_all(bind=engine)
+#create_tables_if_not_exist()
 app = FastAPI(
     title="Habit Tracker API"
 )
