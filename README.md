@@ -90,7 +90,7 @@ packages necessary to run this project locally.
 ```
 python -m venv venv
 source venv/bin/activate
-pip install-r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Create .env:
