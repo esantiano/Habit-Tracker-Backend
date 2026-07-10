@@ -84,12 +84,21 @@ Within your IDE open the Habit-Tracker-Backend folder
 ## Creating the virtual environment 
 This project requires the latest version of python to run locally.
 
-Running the following commands within the terminal 
-will create and activate a virtual environment and install the 
-packages necessary to run this project locally.
+Create a virtual environment
 ```
 python -m venv venv
+```
+Activate the virtual environment 
+mac/linux
+```
 source venv/bin/activate
+```
+Activate the virtual environment windows powershell
+```
+venv\Scripts\Activate.ps1
+```
+Install required packages on the virtual environment
+```
 pip install -r requirements.txt
 ```
 
@@ -111,7 +120,6 @@ SECRET_KEY=dev-secret
 ```
 
 ## Creating the expected database
-
 Running the terminal command below will create the expected database named in the .env locally.
 
 ```
