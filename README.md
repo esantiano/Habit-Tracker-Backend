@@ -73,31 +73,52 @@ Habits are archived via `is_archived` instead of hard deletion:
 
 ---
 
-## Local Setup
-
+## Cloning the repo and navigating through your terminal
+From your IDE's terminal use the commands below
 ```
-git clone <repo-url>
-cd backend
-python-m venv venv
+git clone https://github.com/esantiano/Habit-Tracker-Backend.git
+cd Habit-Tracker-Backend
+```
+Within your IDE open the Habit-Tracker-Backend folder 
+
+## Creating the virtual environment 
+This project requires the latest version of python to run locally.
+
+Running the following commands within the terminal 
+will create your virtual environment and install the 
+packages necessary to run this project locally.
+```
+python -m venv venv
 source venv/bin/activate
 pip install-r requirements.txt
 ```
 
-Create `.env`:
-
+## Create .env:
+For mac or linux run the following in your terminal
+```
+touch .env
+```
+For windows 
+```
+New-Item .env
+```
+Copy and paste the following code into the created .env file.
+You can generate your own secret key if you prefer.
 ```
 ENV=dev
-DATABASE_URL=sqlite:///./dev.db
+DATABASE_URL=sqlite:///Habit-Tracker.db
 SECRET_KEY=dev-secret
 ```
 
-Run migrations:
+## Creating the expected database
+
+Running the terminal command below will create the expected database named in the .env locally.
 
 ```
 alembic upgrade head
 ```
 
-Start server:
+## Starting the project
 
 ```
 uvicorn main:app--reload
