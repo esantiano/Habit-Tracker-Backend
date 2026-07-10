@@ -85,7 +85,7 @@ Within your IDE open the Habit-Tracker-Backend folder
 This project requires the latest version of python to run locally.
 
 Running the following commands within the terminal 
-will create your virtual environment and install the 
+will create and activate a virtual environment and install the 
 packages necessary to run this project locally.
 ```
 python -m venv venv
