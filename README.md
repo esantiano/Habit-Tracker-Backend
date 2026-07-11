@@ -129,7 +129,7 @@ alembic upgrade head
 ## Starting the project
 
 ```
-uvicorn main:app--reload
+uvicorn main:app --reload
 ```
 
 ## Testing
