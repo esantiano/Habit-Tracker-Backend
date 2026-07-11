@@ -72,6 +72,9 @@ Habits are archived via `is_archived` instead of hard deletion:
 - Enables restore functionality
 
 ---
+## Required software
+This project requires the latest version of python to run locally.
+https://www.python.org/downloads/
 
 ## Cloning the repo and navigating through your terminal
 From your IDE's terminal use the commands below
@@ -82,8 +85,6 @@ cd Habit-Tracker-Backend
 Within your IDE open the Habit-Tracker-Backend folder 
 
 ## Creating the virtual environment 
-This project requires the latest version of python to run locally.
-
 Create a virtual environment
 ```
 python -m venv venv
