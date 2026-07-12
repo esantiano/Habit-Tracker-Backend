@@ -72,67 +72,69 @@ Habits are archived via `is_archived` instead of hard deletion:
 - Enables restore functionality
 
 ---
-## Required software
+# Local Development Setup
+
+## Prerequisites
 This project requires the latest version of python to run locally.
 https://www.python.org/downloads/
 
-## Cloning the repo and navigating through your terminal
-From your IDE's terminal use the commands below
+## 1. Clone the Repository
 ```
 git clone https://github.com/esantiano/Habit-Tracker-Backend.git
 cd Habit-Tracker-Backend
 ```
-Within your IDE open the Habit-Tracker-Backend folder 
 
-## Creating the virtual environment 
+## 2. Creating a Virtual Environment 
 Create a virtual environment
 ```
 python -m venv venv
 ```
 Activate the virtual environment 
-mac/linux
+For macOS or Linux
 ```
 source venv/bin/activate
 ```
-Activate the virtual environment windows powershell
+For Windows
 ```
 venv\Scripts\Activate.ps1
 ```
-Install required packages on the virtual environment
+
+## 3. Install Dependencies
 ```
 pip install -r requirements.txt
 ```
 
-## Create .env:
-For mac or linux run the following in your terminal
+## 4. Configure Environment Variables:
+Create a ```.env``` file in the project root directory
+For macOs or Linux
 ```
 touch .env
 ```
-For windows 
+For Windows 
 ```
 New-Item .env
 ```
 Copy and paste the following code into the created .env file.
-You can generate your own secret key if you prefer.
+Replace ```dev-secret``` with your own secret key.
 ```
 ENV=dev
 DATABASE_URL=sqlite:///Habit-Tracker.db
 SECRET_KEY=dev-secret
 ```
 
-## Creating the expected database
-Running the terminal command below will create the expected database named in the .env locally.
-
+## 5. Initialize the Database
+Apply the Alembic database migrations
 ```
 alembic upgrade head
 ```
 
-## Starting the project
-
+## 6. Starting or Stopping the Development Server
+Run the application with Uvicorn:
 ```
 uvicorn main:app --reload
 ```
-
+Stop the application by pressing: 
+Ctrl + C
 ## Testing
 
 Run backend tests:
