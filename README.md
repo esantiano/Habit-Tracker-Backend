@@ -75,7 +75,8 @@ Habits are archived via `is_archived` instead of hard deletion:
 # Local Development Setup
 
 ## Prerequisites
-This project requires the latest version of python to run locally.
+This project requires the latest version of Python to run locally.
+
 https://www.python.org/downloads/
 
 ## 1. Clone the Repository
