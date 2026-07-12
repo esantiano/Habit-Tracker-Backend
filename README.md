@@ -91,6 +91,7 @@ Create a virtual environment
 python -m venv venv
 ```
 Activate the virtual environment 
+
 For macOS or Linux
 ```
 source venv/bin/activate
@@ -107,6 +108,8 @@ pip install -r requirements.txt
 
 ## 4. Configure Environment Variables:
 Create a ```.env``` file in the project root directory
+
+
 For macOs or Linux
 ```
 touch .env
@@ -135,6 +138,7 @@ Run the application with Uvicorn:
 uvicorn main:app --reload
 ```
 Stop the application by pressing: 
+
 Ctrl + C
 ## Testing
 
