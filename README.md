@@ -79,13 +79,7 @@ This project requires the latest version of Python to run locally.
 
 https://www.python.org/downloads/
 
-## 1. Clone the Repository
-```
-git clone https://github.com/esantiano/Habit-Tracker-Backend.git
-cd Habit-Tracker-Backend
-```
-
-## 2. Creating a Virtual Environment 
+## 1. Creating a Virtual Environment 
 Create a virtual environment
 ```
 python -m venv venv
@@ -101,14 +95,13 @@ For Windows
 venv\Scripts\Activate.ps1
 ```
 
-## 3. Install Dependencies
+## 2. Install Dependencies
 ```
 pip install -r requirements.txt
 ```
 
-## 4. Configure Environment Variables:
+## 3. Configure Environment Variables:
 Create a ```.env``` file in the project root directory
-
 
 For macOs or Linux
 ```
@@ -126,13 +119,13 @@ DATABASE_URL=sqlite:///Habit-Tracker.db
 SECRET_KEY=dev-secret
 ```
 
-## 5. Initialize the Database
+## 4. Initialize the Database
 Apply the Alembic database migrations
 ```
 alembic upgrade head
 ```
 
-## 6. Starting or Stopping the Development Server
+## 5. Starting or Stopping the Development Server
 Run the application with Uvicorn:
 ```
 uvicorn main:app --reload
