@@ -11,3 +11,4 @@ python-jose==3.3.0
 passlib
 python-multipart
 tzdata
+debugpy==1.8.1

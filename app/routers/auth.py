@@ -61,11 +61,11 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     if not user or not verify_password(form_data.password, user.password_hash):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect email or password"
+            detail="Incorrect username or password."
         )
     
     access_token = create_access_token(user_id=user.id)
-    return schemas.Token(access_token=access_token)
+    return schemas.Token(access_token=access_token, token_type="bearer")
 
 @router.get("/me", response_model=schemas.UserRead)
 def read_me(current_user: models.User = Depends(get_current_user)):
